@@ -1,0 +1,102 @@
+global
+    # to have these messages end up in /var/log/haproxy.log you will
+    # need to:
+    #
+    # 1) configure syslog to accept network log events.  This is done
+    #    by adding the '-r' option to the SYSLOGD_OPTIONS in
+    #    /etc/sysconfig/syslog
+    #
+    # 2) configure local2 events to go to the /var/log/haproxy.log
+    #   file. A line like the following can be added to
+    #   /etc/sysconfig/syslog
+    #
+    #    local2.*                       /var/log/haproxy.log
+    #
+
+    #log         127.0.0.1 local2
+
+    #chroot      /var/lib/haproxy
+    #pidfile     /var/run/haproxy.pid
+    #maxconn     4000
+    #user        haproxy
+    #group       haproxy
+    #daemon
+
+
+    global
+    maxconn         10000
+    stats socket    /var/run/haproxy.stat mode 600 level admin
+    log             127.0.0.1:514 local2
+    chroot          /var/empty
+    pidfile         /var/run/haproxy.pid
+    user            haproxy
+    group           haproxy
+    daemon
+
+    # turn on stats unix socket
+    stats socket /var/lib/haproxy/stats
+
+#---------------------------------------------------------------------
+# common defaults that all the 'listen' and 'backend' sections will
+# use if not designated in their block
+#---------------------------------------------------------------------
+#defaults
+#    mode                    http
+#    log                     global
+#    option                  httplog
+#    option                  dontlognull
+#    option http-server-close
+#    option forwardfor       except 127.0.0.0/8
+#    option                  redispatch
+#    retries                 3
+#    timeout http-request    10s
+#    timeout queue           1m
+#    timeout connect         10s
+#    timeout client          1m
+#    timeout server          1m
+#    timeout http-keep-alive 10s
+#    timeout check           10s
+#    maxconn                 3000
+
+#---------------------------------------------------------------------
+# main frontend which proxys to the backends
+#---------------------------------------------------------------------
+#frontend  main *:5000
+#   acl url_static       path_beg       -i /static /images /javascript /stylesheets
+#    acl url_static       path_end       -i .jpg .gif .png .css .js
+#
+#    #use_backend static          if url_static
+#    default_backend             static
+
+frontend public
+    bind            *:80 name clear
+    #bind           *:443 ssl crt /etc/haproxy/haproxy.pem
+    mode            http
+    log             global
+    option          httplog
+    option          dontlognull
+    monitor-uri     /monitoruri
+    maxconn         8000
+    timeout client  10s
+
+    stats uri       /admin/stats
+    use_backend     static if { hdr_beg(host) -i img }
+    use_backend     static if { path_beg /img /css   }
+    default_backend static
+
+
+#---------------------------------------------------------------------
+# static backend for serving up images, stylesheets and such
+#---------------------------------------------------------------------
+backend static
+    mode            http
+    balance         roundrobin
+    option prefer-last-server
+    retries         2
+    option redispatch
+    timeout connect 2s
+    timeout server  3s
+
+{% for item in groups['web'] %}
+    server {{ hostvars[item]['inventory_hostname'] }} {{ hostvars[item]['ansible_host'] }}: {{ nginx_listen_port }} check inter 1000 
+{% endfor %}

@@ -1,0 +1,45 @@
+---
+
+- name: Install EPEL Repo, keepalived, haproxy
+  yum:
+    name:
+      - epel-release
+      - keepalived
+      - haproxy
+    state: latest
+
+- name: nukleus
+  sysctl:
+    name: net.ipv4.ip_nonlocal_bind
+    value: '1'
+    state: present
+
+- name: config keepalived
+  template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+  notify:
+    - Restart keepalived
+
+- name: start keepalived haproxy
+  service:
+    name: keepalived
+    state: started
+- name: start haproxy
+  service:
+    name: haproxy
+    state: started
+
+
+- name: config haproxy
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+  notify:
+    - Restart HAProxy
+
+- name: stop firewalld
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: no 

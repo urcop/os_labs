@@ -1,9 +1,9 @@
 - name: Nginx
-  hosts: webservers
+  hosts: web
   roles:
     - web_nginx
 
 - name: Nginx
-  hosts: balance
+  hosts: proxy
   roles:
-    - sec_role
+    - proxy

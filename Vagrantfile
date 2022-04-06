@@ -10,9 +10,13 @@ MACHINES = {
         :box_name => "centos7-custom",
         :ip_addr => '192.168.11.112'
   },
-  :rrobin => {
+  :proxy1 => {
         :box_name => "centos7-custom",
         :ip_addr => '192.168.11.113'
+  },
+  :proxy2 => {
+        :box_name => "centos7-custom",
+        :ip_addr => '192.168.11.114'
   }
 }
 
