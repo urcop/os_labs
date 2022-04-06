@@ -16,7 +16,7 @@ vagrant up
 Запускаем playbook
 
 ```
-ansible-playbook nginx
+ansible-playbook nginx.yml
 ```
 
 <h2 align="center">Дальнейшие шаги</h2>
