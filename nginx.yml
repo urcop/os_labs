@@ -1,9 +1,0 @@
-- name: Nginx
-  hosts: web
-  roles:
-    - web_nginx
-
-- name: Nginx
-  hosts: proxy
-  roles:
-    - proxy

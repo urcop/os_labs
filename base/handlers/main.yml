@@ -1,0 +1,7 @@
+---
+# handlers file for base
+- name: restart vip
+  ansible.builtin.systemd:
+    name: vip-manager
+    state: restarted
+    enabled: yes
