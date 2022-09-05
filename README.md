@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="https://readme-typing-svg.herokuapp.com?font=Montserrat&size=25&lines=%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B5+%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D1%8B">
+    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&width=435&lines=%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B5+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B+2+%D1%81%D0%B5%D0%BC%D0%B5%D1%81%D1%82%D1%80"/>
 </h1>
 
 ---
@@ -26,6 +26,10 @@
 </h3>
 
 ---
+
+<h1 align="center">
+    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&width=435&lines=%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B5+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B+3+%D1%81%D0%B5%D0%BC%D0%B5%D1%81%D1%82%D1%80" alt="Typing SVG" />
+</h1>
 
 <img src="https://i.ibb.co/dgfmp9x/Screenshot-from-2022-04-05-22-13-52.png">
 <img src="https://i.ibb.co/P1sVDqJ/Screenshot-from-2022-04-05-22-13-15.png">
