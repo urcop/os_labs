@@ -78,6 +78,6 @@ Cоздаем файлик
 
 <a href="https://ibb.co/c28c1fY"><img src="https://i.ibb.co/kqDgxbm/13.png" alt="13" border="0"></a>
 
-<a href="https://ibb.co/cDv9YQr"><img src="https://i.ibb.co/SRxgfB3/pes.jpg" alt="pes" border="0"></a>
+
 
 
